@@ -54,3 +54,15 @@ public func == (lhs: JSON, rhs: JSON) -> Bool {
   default: return false
   }
 }
+
+public extension JSON {
+  func flatMap<T, U>(f: T -> U?) -> U? {
+    switch self {
+    case let .String(v): return (v as? T).flatMap(f)
+    case let .Number(v): return (v as? T).flatMap(f)
+    case let .Array(a): return (a as? T).flatMap(f)
+    case let .Object(o): return (o as? T).flatMap(f)
+    case .Null: return .None
+    }
+  }
+}

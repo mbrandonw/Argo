@@ -60,4 +60,12 @@ class ExampleTests: XCTestCase {
     XCTAssert(user.value?.name == "Cool User")
     XCTAssert(user.value?.email == "u.cool@example.com")
   }
+
+  func testFlatMapJSON() {
+    let json = JSON.String("http://google.com/")
+    let url = json.flatMap { NSURL(string: $0) }
+
+    XCTAssert(url != .None)
+    XCTAssert(url?.absoluteString == .Some("http://google.com/"))
+  }
 }
