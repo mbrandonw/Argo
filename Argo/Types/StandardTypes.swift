@@ -42,7 +42,7 @@ extension Double: Decodable {
 extension Bool: Decodable {
   public static func decode(j: JSON) -> Decoded<Bool> {
     switch j {
-    case let .Number(n): return pure(n as Bool)
+    case let .Bool(n): return pure(n)
     default: return .typeMismatch("Bool", actual: j)
     }
   }
