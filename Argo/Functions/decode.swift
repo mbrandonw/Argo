@@ -18,18 +18,18 @@ public func decode<T: Decodable where T == T.DecodedType>(object: AnyObject) -> 
 
 // MARK: decode with a root key
 
-public func decode<T: Decodable where T == T.DecodedType>(object: AnyObject, rootKey: String) -> Decoded<T> {
+public func decode<T: Decodable where T == T.DecodedType>(object: [String: AnyObject], rootKey: String) -> Decoded<T> {
   return JSON.parse(object) <| rootKey
 }
 
-public func decode<T: Decodable where T == T.DecodedType>(object: AnyObject, rootKey: String) -> Decoded<[T]> {
+public func decode<T: Decodable where T == T.DecodedType>(object: [String: AnyObject], rootKey: String) -> Decoded<[T]> {
   return JSON.parse(object) <|| rootKey
 }
 
-public func decode<T: Decodable where T == T.DecodedType>(object: AnyObject, rootKey: String) -> T? {
+public func decode<T: Decodable where T == T.DecodedType>(object: [String: AnyObject], rootKey: String) -> T? {
   return decode(object, rootKey: rootKey).value
 }
 
-public func decode<T: Decodable where T == T.DecodedType>(object: String, rootKey: String) -> [T]? {
+public func decode<T: Decodable where T == T.DecodedType>(object: [String: AnyObject], rootKey: String) -> [T]? {
   return decode(object, rootKey: rootKey).value
 }
